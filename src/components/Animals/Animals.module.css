@@ -1,0 +1,25 @@
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInDown {
+  0% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animateSlideInDown {
+  animation: slideInDown 0.8s ease-out forwards;
+}
+
+.delay500 {
+  animation-delay: 0.5s;
+}
+
+.delay700 {
+  animation-delay: 0.7s;
+}
