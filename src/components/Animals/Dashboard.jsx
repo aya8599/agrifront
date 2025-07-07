@@ -109,30 +109,32 @@ const importedFatteningShare = totalImported > 0 ? ((importedFattening / totalIm
 const importedDairyShare     = totalImported > 0 ? ((importedDairy / totalImported) * 100).toFixed(1) : 0;
 
 
-  const fetchAll = async () => {
-    try {
-      setLoading(true);
-      const [all, statsRes, typesRes, fatteningRes] = await Promise.all([
-        axios.get('http://localhost:9090/api/animals_sec/all-data'),
-        axios.get('http://localhost:9090/api/animals_sec/heads-per-breeder'),
-        axios.get('http://localhost:9090/api/animals_sec/animal-types-distribution'),
-        axios.get('http://localhost:9090/api/animals_sec/fattening-vs-dairy')
-      ]);
-      setCowData(all.data);
-      setAllData(all.data);
-      setStats(statsRes.data);
-      setTypeDist(typesRes.data);
-      setFatVsDairy(fatteningRes.data);
-    } catch (err) {
-      console.error('🛑 Error fetching data:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-  useEffect(() => {
-    fetchAll();
-  }, []);
+const fetchAll = async () => {
+  try {
+    setLoading(true);
+    const [all, statsRes, typesRes, fatteningRes] = await Promise.all([
+      axios.get(`${API_BASE_URL}/api/animals_sec/all-data`),
+      axios.get(`${API_BASE_URL}/api/animals_sec/heads-per-breeder`),
+      axios.get(`${API_BASE_URL}/api/animals_sec/animal-types-distribution`),
+      axios.get(`${API_BASE_URL}/api/animals_sec/fattening-vs-dairy`)
+    ]);
+    setCowData(all.data);
+    setAllData(all.data);
+    setStats(statsRes.data);
+    setTypeDist(typesRes.data);
+    setFatVsDairy(fatteningRes.data);
+  } catch (err) {
+    console.error('🛑 Error fetching data:', err);
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchAll();
+}, []);
 
  
  
