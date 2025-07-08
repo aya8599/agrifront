@@ -309,6 +309,40 @@ const AnimalTrendChart = () => {
     { year: '2024', fattening: 19829, females: 60756, sheepGoats: 16117, packAnimals: 9787, total: 106489 },
   ];
 
+  // تعريف الألوان لكل خط
+  const lineColors = {
+    total: '#8884d8',
+    fattening: '#82ca9d',
+    females: '#ff7300',
+    sheepGoats: '#ff0080',
+    packAnimals: '#00bcd4'
+  };
+
+  // مكون مخصص للتول تيب
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 border border-gray-200 rounded shadow-sm">
+          <p className="font-bold mb-2">{label}</p>
+          {payload.map((entry, index) => (
+            <p 
+              key={`item-${index}`} 
+              style={{ color: entry.color }}
+              className="flex items-center"
+            >
+              <span 
+                className="inline-block w-3 h-3 rounded-full mr-2"
+                style={{ backgroundColor: entry.color }}
+              ></span>
+              {`${entry.name}: ${entry.value.toLocaleString()}`}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="bg-white rounded-xl p-4 shadow w-full h-[400px]">
       <h2 className="text-xl font-bold mb-4 text-gray-700 flex items-center gap-2">
@@ -329,24 +363,7 @@ const AnimalTrendChart = () => {
             axisLine={{ stroke: '#ddd' }}
             tickLine={{ stroke: '#ddd' }}
           />
-          <RechartsTooltip
-            contentStyle={{
-              backgroundColor: 'white',
-              border: '1px solid #ddd',
-              borderRadius: '6px',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-            }}
-            itemStyle={{
-              color: '#333',
-              padding: '3px 0',
-              fontSize: '13px'
-            }}
-            labelStyle={{
-              fontWeight: 'bold',
-              color: '#444',
-              marginBottom: '5px'
-            }}
-          />
+          <Tooltip content={<CustomTooltip />} />
           <Legend 
             wrapperStyle={{ paddingTop: '10px' }}
             iconType="circle"
@@ -355,7 +372,7 @@ const AnimalTrendChart = () => {
           <Line 
             type="monotone" 
             dataKey="total" 
-            stroke="#8884d8" 
+            stroke={lineColors.total} 
             name="الإجمالي" 
             strokeWidth={2}
             dot={{ r: 4 }}
@@ -364,7 +381,7 @@ const AnimalTrendChart = () => {
           <Line 
             type="monotone" 
             dataKey="fattening" 
-            stroke="#82ca9d" 
+            stroke={lineColors.fattening} 
             name="تسمين" 
             strokeWidth={2}
             dot={{ r: 4 }}
@@ -372,7 +389,7 @@ const AnimalTrendChart = () => {
           <Line 
             type="monotone" 
             dataKey="females" 
-            stroke="#ff7300" 
+            stroke={lineColors.females} 
             name="إناث" 
             strokeWidth={2}
             dot={{ r: 4 }}
@@ -380,7 +397,7 @@ const AnimalTrendChart = () => {
           <Line 
             type="monotone" 
             dataKey="sheepGoats" 
-            stroke="#ff0080" 
+            stroke={lineColors.sheepGoats} 
             name="أغنام وماعز" 
             strokeWidth={2}
             dot={{ r: 4 }}
@@ -388,7 +405,7 @@ const AnimalTrendChart = () => {
           <Line 
             type="monotone" 
             dataKey="packAnimals" 
-            stroke="#00bcd4" 
+            stroke={lineColors.packAnimals} 
             name="دواب" 
             strokeWidth={2}
             dot={{ r: 4 }}
