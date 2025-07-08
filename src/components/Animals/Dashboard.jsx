@@ -326,13 +326,14 @@ const AnimalTrendChart = () => {
             tick={{ fill: '#2e7d32' }}
             axisLine={{ stroke: '#81c784' }}
             tickLine={{ stroke: '#81c784' }}
-            label={{ value: 'السنة', position: 'insideBottomRight', offset: -5, fill: '#2e7d32' }}
+            
           />
           <YAxis 
             tick={{ fill: '#2e7d32' }}
             axisLine={{ stroke: '#81c784' }}
             tickLine={{ stroke: '#81c784' }}
             tickFormatter={(value) => (value / 1000).toFixed(0)}
+            tickMargin={10}
             label={{ value: 'عدد الرؤوس (بالآلاف)', angle: -90, position: 'insideLeft', fill: '#2e7d32' }}
           />
       
