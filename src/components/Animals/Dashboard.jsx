@@ -326,12 +326,15 @@ const AnimalTrendChart = () => {
             tick={{ fill: '#2e7d32' }}
             axisLine={{ stroke: '#81c784' }}
             tickLine={{ stroke: '#81c784' }}
+            label={{ value: 'السنة', position: 'insideBottomRight', offset: -5, fill: '#2e7d32' }}
           />
           <YAxis 
             tick={{ fill: '#2e7d32' }}
             axisLine={{ stroke: '#81c784' }}
             tickLine={{ stroke: '#81c784' }}
+            label={{ value: 'عدد الرؤوس', angle: -90, position: 'insideLeft', fill: '#2e7d32' }}
           />
+      
           <RechartsTooltip /> 
           <Legend />
           <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
