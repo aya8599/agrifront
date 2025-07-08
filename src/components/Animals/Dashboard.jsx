@@ -332,8 +332,8 @@ const AnimalTrendChart = () => {
 
   return (
     <div className="p-4 space-y-4 bg-green-50 min-h-screen">
-     <header className="bg-[#556B2F] rounded-xl shadow px-4 py-4">
-  <h1 className="text-2xl font-bold text-white text-center">
+    <header className="bg-[#556B2F] rounded-xl shadow px-6 py-4 flex items-center justify-between">
+  <h1 className="text-2xl font-bold text-white text-center w-full">
     لوحة التوزيع الجغرافي للثروة الحيوانية
   </h1>
 </header>
