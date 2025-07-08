@@ -115,7 +115,7 @@ const fetchAll = async () => {
   try {
     setLoading(true);
     const [all, statsRes, typesRes, fatteningRes] = await Promise.all([
-      axios.get(`${API_BASE_URL}/api/animals_sec/all-data`),
+    axios.get(`${API_BASE_URL}/api/animals_sec/all-data`),
       axios.get(`${API_BASE_URL}/api/animals_sec/heads-per-breeder`),
       axios.get(`${API_BASE_URL}/api/animals_sec/animal-types-distribution`),
       axios.get(`${API_BASE_URL}/api/animals_sec/fattening-vs-dairy`)
