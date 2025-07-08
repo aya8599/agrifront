@@ -310,80 +310,26 @@ const AnimalTrendChart = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-[#f8faf7] to-[#e8f5e9] rounded-xl p-4 shadow-lg w-full h-[400px] border border-green-100">
-      <h2 className="text-xl font-bold mb-4 text-green-900 flex items-center gap-2">
-        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-        </svg>
-        تطور الثروة الحيوانية عبر السنوات
-      </h2>
-      
-      <ResponsiveContainer width="100%" height="85%">
+    <div className="bg-white rounded-xl p-4 shadow w-full h-[400px]">
+      <h2 className="text-xl font-bold mb-4 text-gray-700">📊 تطور الثروة الحيوانية عبر السنوات</h2>
+      <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
-          <XAxis 
-            dataKey="year" 
-            tick={{ fill: '#2e7d32' }}
-            axisLine={{ stroke: '#81c784' }}
-            tickLine={{ stroke: '#81c784' }}
-          />
-          <YAxis 
-            tick={{ fill: '#2e7d32' }}
-            axisLine={{ stroke: '#81c784' }}
-            tickLine={{ stroke: '#81c784' }}
-          />
-          <RechartsTooltip /> {/* الحفاظ على التول تيب الأصلي كما هو */}
-          <Legend 
-            wrapperStyle={{ paddingTop: '10px' }}
-            iconType="circle"
-            iconSize={10}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="total" 
-            stroke="#8884d8" 
-            name="الإجمالي" 
-            strokeWidth={2.5}
-            dot={{ r: 4 }}
-            activeDot={{ r: 6 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="fattening" 
-            stroke="#82ca9d" 
-            name="تسمين" 
-            strokeWidth={2}
-            dot={{ r: 4 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="females" 
-            stroke="#ff7300" 
-            name="إناث" 
-            strokeWidth={2}
-            dot={{ r: 4 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="sheepGoats" 
-            stroke="#ff0080" 
-            name="أغنام وماعز" 
-            strokeWidth={2}
-            dot={{ r: 4 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="packAnimals" 
-            stroke="#00bcd4" 
-            name="دواب" 
-            strokeWidth={2}
-            dot={{ r: 4 }}
-          />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="year" />
+          <YAxis />
+          <RechartsTooltip />
+          <Legend />
+          <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" />
+          <Line type="monotone" dataKey="fattening" stroke="#82ca9d" name="تسمين" />
+          <Line type="monotone" dataKey="females" stroke="#ff7300" name="إناث" />
+          <Line type="monotone" dataKey="sheepGoats" stroke="#ff0080" name="أغنام وماعز" />
+          <Line type="monotone" dataKey="packAnimals" stroke="#00bcd4" name="دواب" />
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 };
+
   return (
     <div className="p-4 space-y-4 bg-green-50 min-h-screen">
     <header className="bg-[#556B2F] rounded-xl shadow px-6 py-4 flex items-center justify-between">
