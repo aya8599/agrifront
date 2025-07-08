@@ -309,44 +309,114 @@ const AnimalTrendChart = () => {
     { year: '2024', fattening: 19829, females: 60756, sheepGoats: 16117, packAnimals: 9787, total: 106489 },
   ];
 
-return (
-    <div className="bg-gradient-to-br from-[#f5fef7] to-[#e0f0e8] rounded-xl shadow-lg p-6 w-full h-[450px]">
-      <h2 className="text-xl font-semibold text-green-900 mb-4 flex items-center gap-2">
-        <span className="text-2xl">📈</span> تطور الثروة الحيوانية عبر السنوات
-      </h2>
+  // ألوان محسنة لتكون أكثر وضوحًا وإمكانية للتمييز
+  const colors = {
+    total: '#1b5e20',
+    fattening: '#388e3c',
+    females: '#f57c00',
+    sheepGoats: '#d81b60',
+    packAnimals: '#00838f'
+  };
 
-      <ResponsiveContainer width="100%" height="90%">
-        <LineChart data={data}>
-          <CartesianGrid stroke="#ccc" strokeDasharray="4 4" />
-          <XAxis dataKey="year" tick={{ fill: '#4a4a4a' }} />
-          <YAxis
-  tick={{ fill: '#4a4a4a', fontSize: 12 }}
-  tickLine={false}
-  axisLine={false}
-  width={70} // زيادة عرض المحور يمنع التداخل
-  label={{
-    value: 'عدد الرؤوس',
-    angle: -90,
-    position: 'outsideLeft', // خارج الرسم البياني
-    offset: 10,
-    style: { fill: '#4a4a4a', fontSize: 14 },
-  }}
-/>
-          <RechartsTooltip
-            contentStyle={{ backgroundColor: '#ffffff', borderColor: '#ccc' }}
-            labelStyle={{ fontWeight: 'bold', color: '#333' }}
-            itemStyle={{ color: '#555' }}
+  return (
+    <div className="bg-gradient-to-br from-[#f5fef7] to-[#e0f0e8] rounded-xl shadow-lg p-6 w-full h-[450px]">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold text-green-900 flex items-center gap-2">
+          <span className="text-2xl">📈</span> تطور الثروة الحيوانية عبر السنوات
+        </h2>
+        <div className="text-sm text-gray-500">
+          عدد الرؤوس (بالآلاف)
+        </div>
+      </div>
+
+      <ResponsiveContainer width="100%" height="85%">
+        <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
+          <CartesianGrid stroke="#e0e0e0" strokeDasharray="3 3" vertical={false} />
+          <XAxis 
+            dataKey="year" 
+            tick={{ fill: '#616161', fontSize: 12 }}
+            axisLine={{ stroke: '#bdbdbd' }}
+            tickLine={false}
           />
-          <Legend
-            wrapperStyle={{ paddingTop: 10 }}
+          <YAxis
+            tick={{ fill: '#616161', fontSize: 12 }}
+            tickLine={false}
+            axisLine={false}
+            tickFormatter={(value) => (value / 1000).toFixed(0)}
+            width={50}
+          />
+          <RechartsTooltip
+            contentStyle={{ 
+              backgroundColor: '#ffffff',
+              border: '1px solid #e0e0e0',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }}
+            labelStyle={{ 
+              fontWeight: 'bold', 
+              color: '#424242',
+              marginBottom: '8px'
+            }}
+            itemStyle={{ 
+              color: '#212121',
+              padding: '4px 0',
+              fontSize: '14px'
+            }}
+            formatter={(value, name) => [`${value.toLocaleString()} رأس`, name]}
+            labelFormatter={(label) => `السنة: ${label}`}
+          />
+          <Legend 
+            wrapperStyle={{ 
+              paddingTop: '10px',
+              fontSize: '13px'
+            }}
             align="center"
             iconType="circle"
+            iconSize={10}
+            layout="horizontal"
+            verticalAlign="bottom"
           />
-          <Line type="monotone" dataKey="total" stroke="#2e7d32" name="الإجمالي" strokeWidth={2} dot={{ r: 4 }} />
-          <Line type="monotone" dataKey="fattening" stroke="#66bb6a" name="تسمين" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="females" stroke="#ffa726" name="إناث" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="sheepGoats" stroke="#ec407a" name="أغنام وماعز" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="packAnimals" stroke="#26c6da" name="دواب" strokeWidth={2} dot={{ r: 3 }} />
+          <Line 
+            type="monotone" 
+            dataKey="total" 
+            stroke={colors.total} 
+            name="الإجمالي" 
+            strokeWidth={3} 
+            dot={{ r: 5, fill: colors.total }}
+            activeDot={{ r: 7, stroke: colors.total, strokeWidth: 2 }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="fattening" 
+            stroke={colors.fattening} 
+            name="تسمين" 
+            strokeWidth={2} 
+            dot={{ r: 4, fill: colors.fattening }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="females" 
+            stroke={colors.females} 
+            name="إناث" 
+            strokeWidth={2} 
+            dot={{ r: 4, fill: colors.females }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="sheepGoats" 
+            stroke={colors.sheepGoats} 
+            name="أغنام وماعز" 
+            strokeWidth={2} 
+            dot={{ r: 4, fill: colors.sheepGoats }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="packAnimals" 
+            stroke={colors.packAnimals} 
+            name="دواب" 
+            strokeWidth={2} 
+            dot={{ r: 4, fill: colors.packAnimals }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
