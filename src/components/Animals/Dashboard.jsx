@@ -319,7 +319,19 @@ return (
         <LineChart data={data}>
           <CartesianGrid stroke="#ccc" strokeDasharray="4 4" />
           <XAxis dataKey="year" tick={{ fill: '#4a4a4a' }} />
-          <YAxis tick={{ fill: '#4a4a4a' }} />
+          <YAxis
+  tick={{ fill: '#4a4a4a', fontSize: 12 }}
+  tickLine={false}
+  axisLine={false}
+  width={70} // زيادة عرض المحور يمنع التداخل
+  label={{
+    value: 'عدد الرؤوس',
+    angle: -90,
+    position: 'outsideLeft', // خارج الرسم البياني
+    offset: 10,
+    style: { fill: '#4a4a4a', fontSize: 14 },
+  }}
+/>
           <RechartsTooltip
             contentStyle={{ backgroundColor: '#ffffff', borderColor: '#ccc' }}
             labelStyle={{ fontWeight: 'bold', color: '#333' }}
