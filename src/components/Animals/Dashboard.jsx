@@ -310,14 +310,29 @@ const AnimalTrendChart = () => {
   ];
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow w-full h-[400px]">
-      <h2 className="text-xl font-bold mb-4 text-gray-700">📊 تطور الثروة الحيوانية عبر السنوات</h2>
-      <ResponsiveContainer width="100%" height="90%">
+   <div className="bg-gradient-to-br from-[#f8faf7] to-[#e8f5e9] rounded-xl p-4 shadow-lg w-full h-[400px] border border-green-100">
+      <h2 className="text-xl font-bold mb-4 text-green-900 flex items-center gap-2">
+        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+        تطور الثروة الحيوانية عبر السنوات
+      </h2>
+      
+      <ResponsiveContainer width="100%" height="85%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
-          <YAxis />
-          <RechartsTooltip />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
+          <XAxis 
+            dataKey="year" 
+            tick={{ fill: '#2e7d32' }}
+            axisLine={{ stroke: '#81c784' }}
+            tickLine={{ stroke: '#81c784' }}
+          />
+          <YAxis 
+            tick={{ fill: '#2e7d32' }}
+            axisLine={{ stroke: '#81c784' }}
+            tickLine={{ stroke: '#81c784' }}
+          />
+          <RechartsTooltip /> 
           <Legend />
           <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" />
           <Line type="monotone" dataKey="fattening" stroke="#82ca9d" name="تسمين" />
