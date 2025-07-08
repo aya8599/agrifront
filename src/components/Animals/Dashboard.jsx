@@ -309,113 +309,89 @@ const AnimalTrendChart = () => {
     { year: '2024', fattening: 19829, females: 60756, sheepGoats: 16117, packAnimals: 9787, total: 106489 },
   ];
 
-  // ألوان محسنة لتكون أكثر وضوحًا وإمكانية للتمييز
-  const colors = {
-    total: '#1b5e20',
-    fattening: '#388e3c',
-    females: '#f57c00',
-    sheepGoats: '#d81b60',
-    packAnimals: '#00838f'
-  };
-
   return (
-    <div className="bg-gradient-to-br from-[#f5fef7] to-[#e0f0e8] rounded-xl shadow-lg p-6 w-full h-[450px]">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-green-900 flex items-center gap-2">
-          <span className="text-2xl">📈</span> تطور الثروة الحيوانية عبر السنوات
-        </h2>
-        <div className="text-sm text-gray-500">
-          عدد الرؤوس (بالآلاف)
-        </div>
-      </div>
-
+    <div className="bg-white rounded-xl p-4 shadow w-full h-[400px]">
+      <h2 className="text-xl font-bold mb-4 text-gray-700 flex items-center gap-2">
+        <span className="text-2xl">📊</span> تطور الثروة الحيوانية عبر السنوات
+      </h2>
+      
       <ResponsiveContainer width="100%" height="85%">
-        <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-          <CartesianGrid stroke="#e0e0e0" strokeDasharray="3 3" vertical={false} />
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
           <XAxis 
             dataKey="year" 
-            tick={{ fill: '#616161', fontSize: 12 }}
-            axisLine={{ stroke: '#bdbdbd' }}
-            tickLine={false}
+            tick={{ fill: '#555' }}
+            axisLine={{ stroke: '#ddd' }}
+            tickLine={{ stroke: '#ddd' }}
           />
-          <YAxis
-            tick={{ fill: '#616161', fontSize: 12 }}
-            tickLine={false}
-            axisLine={false}
-            tickFormatter={(value) => (value / 1000).toFixed(0)}
-            width={50}
+          <YAxis 
+            tick={{ fill: '#555' }}
+            axisLine={{ stroke: '#ddd' }}
+            tickLine={{ stroke: '#ddd' }}
           />
           <RechartsTooltip
-            contentStyle={{ 
-              backgroundColor: '#ffffff',
-              border: '1px solid #e0e0e0',
-              borderRadius: '8px',
+            contentStyle={{
+              backgroundColor: 'white',
+              border: '1px solid #ddd',
+              borderRadius: '6px',
               boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
             }}
-            labelStyle={{ 
-              fontWeight: 'bold', 
-              color: '#424242',
-              marginBottom: '8px'
-            }}
-            itemStyle={{ 
-              color: '#212121',
-              padding: '4px 0',
-              fontSize: '14px'
-            }}
-            formatter={(value, name) => [`${value.toLocaleString()} رأس`, name]}
-            labelFormatter={(label) => `السنة: ${label}`}
-          />
-          <Legend 
-            wrapperStyle={{ 
-              paddingTop: '10px',
+            itemStyle={{
+              color: '#333',
+              padding: '3px 0',
               fontSize: '13px'
             }}
-            align="center"
+            labelStyle={{
+              fontWeight: 'bold',
+              color: '#444',
+              marginBottom: '5px'
+            }}
+          />
+          <Legend 
+            wrapperStyle={{ paddingTop: '10px' }}
             iconType="circle"
             iconSize={10}
-            layout="horizontal"
-            verticalAlign="bottom"
           />
           <Line 
             type="monotone" 
             dataKey="total" 
-            stroke={colors.total} 
+            stroke="#8884d8" 
             name="الإجمالي" 
-            strokeWidth={3} 
-            dot={{ r: 5, fill: colors.total }}
-            activeDot={{ r: 7, stroke: colors.total, strokeWidth: 2 }}
+            strokeWidth={2}
+            dot={{ r: 4 }}
+            activeDot={{ r: 6 }}
           />
           <Line 
             type="monotone" 
             dataKey="fattening" 
-            stroke={colors.fattening} 
+            stroke="#82ca9d" 
             name="تسمين" 
-            strokeWidth={2} 
-            dot={{ r: 4, fill: colors.fattening }}
+            strokeWidth={2}
+            dot={{ r: 4 }}
           />
           <Line 
             type="monotone" 
             dataKey="females" 
-            stroke={colors.females} 
+            stroke="#ff7300" 
             name="إناث" 
-            strokeWidth={2} 
-            dot={{ r: 4, fill: colors.females }}
+            strokeWidth={2}
+            dot={{ r: 4 }}
           />
           <Line 
             type="monotone" 
             dataKey="sheepGoats" 
-            stroke={colors.sheepGoats} 
+            stroke="#ff0080" 
             name="أغنام وماعز" 
-            strokeWidth={2} 
-            dot={{ r: 4, fill: colors.sheepGoats }}
+            strokeWidth={2}
+            dot={{ r: 4 }}
           />
           <Line 
             type="monotone" 
             dataKey="packAnimals" 
-            stroke={colors.packAnimals} 
+            stroke="#00bcd4" 
             name="دواب" 
-            strokeWidth={2} 
-            dot={{ r: 4, fill: colors.packAnimals }}
+            strokeWidth={2}
+            dot={{ r: 4 }}
           />
         </LineChart>
       </ResponsiveContainer>
