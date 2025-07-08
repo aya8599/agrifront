@@ -159,37 +159,37 @@ function handlePrint() {
 
 
   // ============ جلب البيانات ============
-const API_BASE_URL = import.meta.env.VITE_API_URL;
-
 const fetchAll = async () => {
   try {
     setLoading(true);
+
     const [
       all,
       statsRes,
       typesRes,
       fatteningRes,
-      dotDensityRes,
+     
     ] = await Promise.all([
-      axios.get(`${API_BASE_URL}/api/dumanimal/all-data`),
-      axios.get(`${API_BASE_URL}/api/dumanimal/heads-per-breeder`),
-      axios.get(`${API_BASE_URL}/api/dumanimal/animal-types-distribution`),
-      axios.get(`${API_BASE_URL}/api/dumanimal/fattening-vs-dairy`),
-      axios.get(`${API_BASE_URL}/api/dumanimal/dot-density-categorized`),
+      axios.get('https://agriproject.glitch.me/api/dumanimal/all-data'),
+      axios.get('https://agriproject.glitch.me/api/dumanimal/heads-per-breeder'),
+      axios.get('https://agriproject.glitch.me/api/dumanimal/animal-types-distribution'),
+      axios.get('https://agriproject.glitch.me/api/dumanimal/fattening-vs-dairy'),
+     
     ]);
 
     setAllData(all.data);
     setStats(statsRes.data);
     setTypeDist(typesRes.data);
     setFatVsDairy(fatteningRes.data);
-    setDotData(dotDensityRes.data);
-    
+   
+
   } catch (err) {
     console.error('🛑 Error fetching data:', err);
   } finally {
     setLoading(false);
   }
 };
+
 
  
   // ============ تحميل البيانات أول مرة ============
