@@ -170,20 +170,20 @@ const fetchAll = async () => {
       statsRes,
       typesRes,
       fatteningRes,
-      // dotDensityRes, // 🔴 غير متاح حالياً
+      dotDensityRes,
     ] = await Promise.all([
       axios.get(`${API_BASE_URL}/api/dumanimal/all-data`),
       axios.get(`${API_BASE_URL}/api/dumanimal/heads-per-breeder`),
       axios.get(`${API_BASE_URL}/api/dumanimal/animal-types-distribution`),
       axios.get(`${API_BASE_URL}/api/dumanimal/fattening-vs-dairy`),
-      // axios.get(`${API_BASE_URL}/api/dumanimal/dot-density-categorized`), // 🔴 احذفه أو فعّله لما تبني المسار
+     axios.get(`${API_BASE_URL}/api/dumanimal/dot-density-categorized`), 
     ]);
 
     setAllData(all.data);
     setStats(statsRes.data);
     setTypeDist(typesRes.data);
     setFatVsDairy(fatteningRes.data);
-    // setDotData(dotDensityRes.data); // 🔴 علّق دي كمان
+    setDotData(dotDensityRes.data); 
 
   } catch (err) {
     console.error('🛑 Error fetching data:', err);
