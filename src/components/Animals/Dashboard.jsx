@@ -309,27 +309,37 @@ const AnimalTrendChart = () => {
     { year: '2024', fattening: 19829, females: 60756, sheepGoats: 16117, packAnimals: 9787, total: 106489 },
   ];
 
-  return (
-    <div className="bg-white rounded-xl p-4 shadow w-full h-[400px]">
-      <h2 className="text-xl font-bold mb-4 text-gray-700">📊 تطور الثروة الحيوانية عبر السنوات</h2>
+return (
+    <div className="bg-gradient-to-br from-[#f5fef7] to-[#e0f0e8] rounded-xl shadow-lg p-6 w-full h-[450px]">
+      <h2 className="text-xl font-semibold text-green-900 mb-4 flex items-center gap-2">
+        <span className="text-2xl">📈</span> تطور الثروة الحيوانية عبر السنوات
+      </h2>
+
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" />
-          <YAxis />
-          <RechartsTooltip />
-          <Legend />
-          <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" />
-          <Line type="monotone" dataKey="fattening" stroke="#82ca9d" name="تسمين" />
-          <Line type="monotone" dataKey="females" stroke="#ff7300" name="إناث" />
-          <Line type="monotone" dataKey="sheepGoats" stroke="#ff0080" name="أغنام وماعز" />
-          <Line type="monotone" dataKey="packAnimals" stroke="#00bcd4" name="دواب" />
+          <CartesianGrid stroke="#ccc" strokeDasharray="4 4" />
+          <XAxis dataKey="year" tick={{ fill: '#4a4a4a' }} />
+          <YAxis tick={{ fill: '#4a4a4a' }} />
+          <RechartsTooltip
+            contentStyle={{ backgroundColor: '#ffffff', borderColor: '#ccc' }}
+            labelStyle={{ fontWeight: 'bold', color: '#333' }}
+            itemStyle={{ color: '#555' }}
+          />
+          <Legend
+            wrapperStyle={{ paddingTop: 10 }}
+            align="center"
+            iconType="circle"
+          />
+          <Line type="monotone" dataKey="total" stroke="#2e7d32" name="الإجمالي" strokeWidth={2} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="fattening" stroke="#66bb6a" name="تسمين" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="females" stroke="#ffa726" name="إناث" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="sheepGoats" stroke="#ec407a" name="أغنام وماعز" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="packAnimals" stroke="#26c6da" name="دواب" strokeWidth={2} dot={{ r: 3 }} />
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 };
-
   return (
     <div className="p-4 space-y-4 bg-green-50 min-h-screen">
     <header className="bg-[#556B2F] rounded-xl shadow px-6 py-4 flex items-center justify-between">
