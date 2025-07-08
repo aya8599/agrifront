@@ -310,54 +310,75 @@ const AnimalTrendChart = () => {
   ];
 
   return (
-    <div dir="rtl" className="bg-white rounded-xl shadow-md p-6 w-full h-[460px]">
-      <h2 className="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">
-        <span>📊</span>
+    <div className="bg-gradient-to-br from-[#f8faf7] to-[#e8f5e9] rounded-xl p-4 shadow-lg w-full h-[400px] border border-green-100">
+      <h2 className="text-xl font-bold mb-4 text-green-900 flex items-center gap-2">
+        <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
         تطور الثروة الحيوانية عبر السنوات
       </h2>
-
-      <ResponsiveContainer width="100%" height="90%">
+      
+      <ResponsiveContainer width="100%" height="85%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="4 4" stroke="#e0e0e0" />
-          
-          <XAxis
-            dataKey="year"
-            tick={{ fill: '#4a4a4a', fontSize: 13 }}
-            axisLine={false}
-            tickLine={false}
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
+          <XAxis 
+            dataKey="year" 
+            tick={{ fill: '#2e7d32' }}
+            axisLine={{ stroke: '#81c784' }}
+            tickLine={{ stroke: '#81c784' }}
           />
-
-          <YAxis
-            tick={{ fill: '#4a4a4a', fontSize: 13 }}
-            axisLine={false}
-            tickLine={false}
-            width={70}
-            label={{
-              value: 'عدد الرؤوس',
-              angle: -90,
-              position: 'outsideLeft',
-              offset: 10,
-              style: { fill: '#4a4a4a', fontSize: 14 }
-            }}
+          <YAxis 
+            tick={{ fill: '#2e7d32' }}
+            axisLine={{ stroke: '#81c784' }}
+            tickLine={{ stroke: '#81c784' }}
           />
-
-          <RechartsTooltip
-            contentStyle={{ backgroundColor: '#fff', borderColor: '#ccc', borderRadius: 6 }}
-            labelStyle={{ fontWeight: 'bold', color: '#333' }}
-            itemStyle={{ color: '#555' }}
-          />
-
-          <Legend
-            wrapperStyle={{ paddingTop: 10 }}
-            align="center"
+          <RechartsTooltip /> {/* الحفاظ على التول تيب الأصلي كما هو */}
+          <Legend 
+            wrapperStyle={{ paddingTop: '10px' }}
             iconType="circle"
+            iconSize={10}
           />
-
-          <Line type="monotone" dataKey="total" stroke="#2e7d32" name="الإجمالي" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="fattening" stroke="#66bb6a" name="تسمين" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="females" stroke="#ffa726" name="إناث" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="sheepGoats" stroke="#ec407a" name="أغنام وماعز" strokeWidth={2} dot={{ r: 3 }} />
-          <Line type="monotone" dataKey="packAnimals" stroke="#26c6da" name="دواب" strokeWidth={2} dot={{ r: 3 }} />
+          <Line 
+            type="monotone" 
+            dataKey="total" 
+            stroke="#8884d8" 
+            name="الإجمالي" 
+            strokeWidth={2.5}
+            dot={{ r: 4 }}
+            activeDot={{ r: 6 }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="fattening" 
+            stroke="#82ca9d" 
+            name="تسمين" 
+            strokeWidth={2}
+            dot={{ r: 4 }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="females" 
+            stroke="#ff7300" 
+            name="إناث" 
+            strokeWidth={2}
+            dot={{ r: 4 }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="sheepGoats" 
+            stroke="#ff0080" 
+            name="أغنام وماعز" 
+            strokeWidth={2}
+            dot={{ r: 4 }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="packAnimals" 
+            stroke="#00bcd4" 
+            name="دواب" 
+            strokeWidth={2}
+            dot={{ r: 4 }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
