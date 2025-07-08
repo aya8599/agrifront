@@ -334,11 +334,11 @@ const AnimalTrendChart = () => {
           />
           <RechartsTooltip /> 
           <Legend />
-          <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" />
-          <Line type="monotone" dataKey="fattening" stroke="#82ca9d" name="تسمين" />
-          <Line type="monotone" dataKey="females" stroke="#ff7300" name="إناث" />
-          <Line type="monotone" dataKey="sheepGoats" stroke="#ff0080" name="أغنام وماعز" />
-          <Line type="monotone" dataKey="packAnimals" stroke="#00bcd4" name="دواب" />
+          <Line type="monotone" dataKey="total" stroke="#8884d8" name="الإجمالي" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+          <Line type="monotone" dataKey="fattening" stroke="#82ca9d" name="تسمين" strokeWidth={2} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="females" stroke="#ff7300" name="إناث" strokeWidth={2} dot={{ r: 4 }}  />
+          <Line type="monotone" dataKey="sheepGoats" stroke="#ff0080" name="أغنام وماعز" strokeWidth={2} dot={{ r: 4 }} />
+          <Line type="monotone" dataKey="packAnimals" stroke="#00bcd4" name="دواب" strokeWidth={2} dot={{ r: 4 }} />
         </LineChart>
       </ResponsiveContainer>
     </div>
