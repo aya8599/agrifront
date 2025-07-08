@@ -309,126 +309,57 @@ const AnimalTrendChart = () => {
     { year: '2024', fattening: 19829, females: 60756, sheepGoats: 16117, packAnimals: 9787, total: 106489 },
   ];
 
-  // ألوان مستوحاة من الطبيعة والزراعة
-  const colors = {
-    total: '#4a7c59', // أخضر غابات
-    fattening: '#8cb369', // أخضر فاتح
-    females: '#f4a259', // برتقالي ترابي
-    sheepGoats: '#bc4b51', // أحمر طيني
-    packAnimals: '#5b8e7d' // أخضر مزرق
-  };
-
-  // تنسيق مخصص للتول تيب
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white p-3 border border-green-100 rounded-lg shadow-md">
-          <p className="font-bold text-green-800 mb-2">سنة {label}</p>
-          <div className="space-y-1">
-            {payload.map((entry, index) => (
-              <div key={`item-${index}`} className="flex items-center">
-                <span 
-                  className="inline-block w-3 h-3 rounded-full mr-2"
-                  style={{ backgroundColor: entry.color }}
-                ></span>
-                <span style={{ color: entry.color }} className="font-medium">
-                  {entry.name}:
-                </span>
-                <span className="text-gray-700 mr-1">
-                  {entry.value.toLocaleString()} رأس
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
-    <div className="bg-gradient-to-br from-green-50 to-amber-50 rounded-xl p-5 shadow-lg w-full h-[420px] border border-green-100">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-green-900 flex items-center">
-          <svg className="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-          </svg>
-          تطور الثروة الحيوانية
-        </h2>
-        <span className="text-sm text-green-700 bg-green-100 px-2 py-1 rounded">
-          آخر تحديث: 2024
-        </span>
-      </div>
+    <div dir="rtl" className="bg-white rounded-xl shadow-md p-6 w-full h-[460px]">
+      <h2 className="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">
+        <span>📊</span>
+        تطور الثروة الحيوانية عبر السنوات
+      </h2>
 
-      <ResponsiveContainer width="100%" height="85%">
-        <LineChart data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#d1e7dd" vertical={false} />
-          <XAxis 
-            dataKey="year" 
-            tick={{ fill: '#4a7c59' }}
-            axisLine={{ stroke: '#a5d6a7' }}
-            tickLine={{ stroke: '#a5d6a7' }}
+      <ResponsiveContainer width="100%" height="90%">
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="4 4" stroke="#e0e0e0" />
+          
+          <XAxis
+            dataKey="year"
+            tick={{ fill: '#4a4a4a', fontSize: 13 }}
+            axisLine={false}
+            tickLine={false}
           />
-          <YAxis 
-            tick={{ fill: '#4a7c59' }}
-            axisLine={{ stroke: '#a5d6a7' }}
-            tickLine={{ stroke: '#a5d6a7' }}
-            tickFormatter={(value) => (value / 1000).toFixed(0) + 'K'}
+
+          <YAxis
+            tick={{ fill: '#4a4a4a', fontSize: 13 }}
+            axisLine={false}
+            tickLine={false}
+            width={70}
+            label={{
+              value: 'عدد الرؤوس',
+              angle: -90,
+              position: 'outsideLeft',
+              offset: 10,
+              style: { fill: '#4a4a4a', fontSize: 14 }
+            }}
           />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend 
-            wrapperStyle={{ paddingTop: '15px' }}
+
+          <RechartsTooltip
+            contentStyle={{ backgroundColor: '#fff', borderColor: '#ccc', borderRadius: 6 }}
+            labelStyle={{ fontWeight: 'bold', color: '#333' }}
+            itemStyle={{ color: '#555' }}
+          />
+
+          <Legend
+            wrapperStyle={{ paddingTop: 10 }}
+            align="center"
             iconType="circle"
-            iconSize={10}
-            formatter={(value) => <span className="text-green-800 text-sm">{value}</span>}
           />
-          <Line 
-            type="monotone" 
-            dataKey="total" 
-            stroke={colors.total} 
-            name="الإجمالي" 
-            strokeWidth={3}
-            dot={{ r: 5, fill: colors.total }}
-            activeDot={{ r: 7, stroke: colors.total, strokeWidth: 2 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="fattening" 
-            stroke={colors.fattening} 
-            name="تسمين" 
-            strokeWidth={2}
-            dot={{ r: 4, fill: colors.fattening }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="females" 
-            stroke={colors.females} 
-            name="إناث" 
-            strokeWidth={2}
-            dot={{ r: 4, fill: colors.females }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="sheepGoats" 
-            stroke={colors.sheepGoats} 
-            name="أغنام وماعز" 
-            strokeWidth={2}
-            dot={{ r: 4, fill: colors.sheepGoats }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="packAnimals" 
-            stroke={colors.packAnimals} 
-            name="دواب" 
-            strokeWidth={2}
-            dot={{ r: 4, fill: colors.packAnimals }}
-          />
+
+          <Line type="monotone" dataKey="total" stroke="#2e7d32" name="الإجمالي" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="fattening" stroke="#66bb6a" name="تسمين" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="females" stroke="#ffa726" name="إناث" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="sheepGoats" stroke="#ec407a" name="أغنام وماعز" strokeWidth={2} dot={{ r: 3 }} />
+          <Line type="monotone" dataKey="packAnimals" stroke="#26c6da" name="دواب" strokeWidth={2} dot={{ r: 3 }} />
         </LineChart>
       </ResponsiveContainer>
-
-      <div className="mt-2 text-xs text-green-600 text-left">
-        مصدر البيانات: وزارة الزراعة - إدارة الثروة الحيوانية
-      </div>
     </div>
   );
 };
