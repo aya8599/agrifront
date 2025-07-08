@@ -319,7 +319,7 @@ const AnimalTrendChart = () => {
       </h2>
       
       <ResponsiveContainer width="100%" height="85%">
-        <LineChart data={data}>
+        <LineChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" vertical={false} />
           <XAxis 
             dataKey="year" 
@@ -332,6 +332,7 @@ const AnimalTrendChart = () => {
             tick={{ fill: '#2e7d32' }}
             axisLine={{ stroke: '#81c784' }}
             tickLine={{ stroke: '#81c784' }}
+            tickFormatter={(value) => (value / 1000).toFixed(0)}
             label={{ value: 'عدد الرؤوس', angle: -90, position: 'insideLeft', fill: '#2e7d32' }}
           />
       
