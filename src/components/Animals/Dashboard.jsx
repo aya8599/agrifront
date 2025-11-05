@@ -710,15 +710,7 @@ const AnimalTrendChart = () => {
         </div>
       </div>
 
-      <div className="absolute top-4 right-4 bg-white p-2 rounded-lg shadow-md z-[1000]">
-        <div className="flex flex-col gap-1">
-          <span className="text-xs font-medium">التدرج اللوني:</span>
-          <div className="flex items-center text-xs">
-            <span className="w-8">عالٍ</span>
-            <div className="h-4 w-20 bg-gradient-to-r from-green-500 via-yellow-400 to-red-500"></div>
-            <span className="w-8">منخفض</span>
-          </div>
-        </div>
+    
       </div>
     </div>
   </MapSection>
